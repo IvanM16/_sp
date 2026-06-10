@@ -23,18 +23,18 @@ To compile the compiler itself, open your terminal and run:
 
 ```bash
 gcc compiler.c -o compiler
+```
 
-Execution
+### Execution
 Create a text file containing your source code (e.g., program.txt), and then pass it to the compiled executable:
-```bash
-./compiler program.txt
+```./compiler program.txt
+```
 
-💻 Language Syntax & Example
+## 💻 Language Syntax & Example
 The custom language supports basic arithmetic, logical comparisons, variable assignments, loops, conditionals, and functions.
 
 Here is an example of what program.txt might look like:
-```bash
-// Define a function
+```// Define a function
 func multiply(a, b) {
     return a * b;
 }
@@ -46,14 +46,14 @@ result = 1;
 while (x > 0) {
     result = multiply(result, x);
     x = x - 1;
-} ```
-
-🧠 Architecture Highlights
-1. The while Loop Design (Backpatching)
+}
+```
+## 🧠 Architecture Highlights
+### 1. The while Loop Design (Backpatching)
 Because the compiler reads code from top to bottom, it uses a technique called Backpatching to handle loops.
 When it encounters a while statement, it generates a JMP_FALSE instruction with a placeholder destination (?). Once the parser finishes reading the entire body of the loop, it knows the exact memory address where the loop ends and goes back to "patch" the placeholder with the correct jump address.
 
-2. Function Call Mechanism
+### 2. Function Call Mechanism
 To support recursion and prevent variables from clashing, the VM uses Execution Frames (Call Stack).
 
 CALL: When a function is called, the VM pauses the current context, pushes a new frame onto the stack, and passes the arguments.
